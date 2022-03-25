@@ -64,11 +64,11 @@ class NewQuestion extends Component {
 function NewQuestionWithNavigation(props) {
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (props.authedUser === '') {
-      navigate('/signin');
-    }
-  });
+  // React.useEffect(() => {
+  //   if (props.authedUser === '') {
+  //     navigate('/signin');
+  //   }
+  // });
 
   return <NewQuestion {...props} navigate={navigate} />;
 }

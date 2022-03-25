@@ -38,18 +38,17 @@ class QuestionListWithToggle extends Component {
           </ToggleButtonGroup>
         </div>
         <div className="row">
-          {(this.state.showing === 'unanswered'
-            ? unAnsweredQIds
-            : answeredQIds
-          ).map((key) => (
-            <Question
-              key={key}
-              id={key}
-              userName={questions[key].author}
-              optionText1={questions[key].optionOne.text}
-              optionText2={questions[key].optionTwo.text}
-            />
-          ))}
+          {(this.state.showing === 'unanswered' ? unAnsweredQIds : answeredQIds)
+            .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+            .map((key) => (
+              <Question
+                key={key}
+                id={key}
+                userName={questions[key].author}
+                optionText1={questions[key].optionOne.text}
+                optionText2={questions[key].optionTwo.text}
+              />
+            ))}
         </div>
       </div>
     );

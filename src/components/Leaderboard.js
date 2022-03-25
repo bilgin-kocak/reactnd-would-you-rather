@@ -26,11 +26,11 @@ class Leaderboard extends Component {
 function LeaderboardWithNavigation(props) {
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (props.authedUser === '') {
-      navigate('/signin');
-    }
-  });
+  // React.useEffect(() => {
+  //   if (props.authedUser === '') {
+  //     navigate('/signin');
+  //   }
+  // });
 
   return <Leaderboard {...props} />;
 }

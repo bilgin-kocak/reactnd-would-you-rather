@@ -3,10 +3,11 @@ import { styled } from '@mui/material/styles';
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
+import { connect } from 'react-redux';
 
 class ViewVoteResult extends Component {
   render() {
-    const { question, writer, yourVote } = this.props;
+    const { question, writer, yourVote, users } = this.props;
     const optionOne = question.optionOne.votes.length;
     const optionTwo = question.optionTwo.votes.length;
     const sum = optionOne + optionTwo;
@@ -20,10 +21,7 @@ class ViewVoteResult extends Component {
           </div>
           <div className="row">
             <div className="col-3">
-              <img
-                className="user-avatar"
-                src="https://via.placeholder.com/100x100"
-              />
+              <img className="user-avatar" src={users[writer.id].avatarURL} />
             </div>
             <div className="col-9">
               <h3>Would you rather...</h3>
@@ -55,7 +53,11 @@ class ViewVoteResult extends Component {
   }
 }
 
-export default ViewVoteResult;
+function mapStateToProps({ users }) {
+  return { users };
+}
+
+export default connect(mapStateToProps)(ViewVoteResult);
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 15,

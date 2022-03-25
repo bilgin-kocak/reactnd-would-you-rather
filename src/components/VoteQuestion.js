@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class VoteQuestion extends Component {
   state = { option: 'none' };
@@ -8,7 +9,7 @@ class VoteQuestion extends Component {
     }
   };
   render() {
-    const { writer, question, authedUser } = this.props;
+    const { writer, question, authedUser, users } = this.props;
     return (
       <div className="p-2">
         <div className="container border rounded p-4">
@@ -17,10 +18,7 @@ class VoteQuestion extends Component {
           </div>
           <div className="row">
             <div className="col-3">
-              <img
-                className="user-avatar"
-                src="https://via.placeholder.com/100x100"
-              />
+              <img className="user-avatar" src={users[writer.id].avatarURL} />
             </div>
             <div className="col-9">
               <h3>Would you rather...</h3>
@@ -52,4 +50,8 @@ class VoteQuestion extends Component {
   }
 }
 
-export default VoteQuestion;
+function mapStateToProps({ users }) {
+  return { users };
+}
+
+export default connect(mapStateToProps)(VoteQuestion);

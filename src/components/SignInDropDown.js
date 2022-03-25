@@ -8,18 +8,19 @@ import Select from '@mui/material/Select';
 import CircularProgress from '@mui/material/CircularProgress';
 import { connect } from 'react-redux';
 import { handleSetAuthedUser } from '../actions/authedUser';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export function SignInDropDown(props) {
   const [authedUser, setAuthedUser] = React.useState('');
   const navigate = useNavigate();
+  const location = useLocation();
   const handleChange = (event) => {
     setAuthedUser(event.target.value);
   };
 
   const onClickAuthedUser = () => {
     props.dispatch(handleSetAuthedUser(authedUser));
-    navigate('/');
+    navigate(location.state.from.pathname);
   };
 
   return (

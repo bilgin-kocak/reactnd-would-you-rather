@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import VoteQuestion from './VoteQuestion';
 import ViewVoteResult from './ViewVoteResult';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import {
+  useParams,
+  useLocation,
+  Navigate,
+  useNavigate,
+} from 'react-router-dom';
 import { handleSaveQuestionAnswer } from '../actions/questions';
+import { handleSetAuthedUser } from '../actions/authedUser';
 
 class Vote extends Component {
   handleForm = (e) => {
@@ -20,6 +26,15 @@ class Vote extends Component {
     const { questionId, authedUser, questions, users } = this.props;
     const question = questions[questionId];
     if (!question) {
+      // this.props.dispatch(handleSetAuthedUser(''));
+      // return (
+      //   <Navigate
+      //     to="/not-found"
+      //     state={{ from: this.props.location }}
+      //     replace
+      //   />
+      // );
+
       return <div className="container">No Question Found</div>;
     }
     const writer = users[question.author];
@@ -52,7 +67,16 @@ class Vote extends Component {
 
 function VoteWithParams(props) {
   const { questionId } = useParams();
-  return <Vote {...props} questionId={questionId}></Vote>;
+  const location = useLocation();
+  const navigate = useNavigate();
+  return (
+    <Vote
+      {...props}
+      questionId={questionId}
+      location={location}
+      navigate={navigate}
+    ></Vote>
+  );
 }
 
 function mapStateToProps({ questions, authedUser, users }) {

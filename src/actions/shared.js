@@ -4,7 +4,7 @@ import { showLoading, hideLoading } from 'react-redux-loading';
 
 export const RECEIVE_DATA = 'RECEIVE_DATA';
 
-const AUTHEDUSER = 'johndoe';
+const AUTHEDUSER = ''; //'johndoe';
 
 function receiveData(users, questions) {
   return {

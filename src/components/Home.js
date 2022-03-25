@@ -21,11 +21,11 @@ function mapStateToProps(state) {
 function HomeWithNavigate(props) {
   let navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (props.authedUser === '') {
-      navigate('/signin');
-    }
-  });
+  // React.useEffect(() => {
+  //   if (props.authedUser === '') {
+  //     navigate('/signin');
+  //   }
+  // });
   return <Home {...props} navigate={navigate} />;
 }
 
